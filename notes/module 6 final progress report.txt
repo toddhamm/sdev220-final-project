@@ -1,0 +1,42 @@
+Hello,
+
+Here is an update on my final project for SDEV 220. 
+
+Currently, I have selected the Custom TKinter module for the graphical 
+user interface (GUI). I like it better than the stock TKinter module. 
+It reminds me a lot of the Bootstrap framework for HTML and CSS (websites) and is 
+built on top of TKinter. 
+
+The documentation for Custom TKinter is https://customtkinter.tomschimansky.com/tutorial/ 
+and is very useful. I looked at a few other GUI modules, but I liked Custom TKinter 
+the best and it is easy to use. 
+
+Beyond that, I have a demo program built that can be tested if desired, or take a 
+look at the screen shots. The demo shows the basic functions (buttons at the top) and 
+it imports the sample csv using a file dialog. 
+
+I have a lot to do, obviously, but I believe I can complete the project as outlined in 
+my original specifications without any issues and it the time remaining. 
+
+What I will be working on next is the core functionality of the app:
+- parse the csv file, process the contents and output to the screen the results noted 
+in the original scope of work (attendance / absence trends for a grade level at a school)
+- store the report in a database or as a csv and pdf file so that it can be accessed 
+later
+- add a list view of stored reports
+- provide a delete button to delete stored reports
+- line the buttons up horizontally
+- separate the logic into classes and a main program
+
+My wife is helping me evaluate the app and she gave me the idea for it. She works 
+in a school and her colleague, a guidance counselor, is interested in using the program. I 
+plan to see if the school needs other custom programs written to help automate some of their 
+processes. I'd like to do this as an unpaid internship so that I can build a portfolio of 
+Python programs. 
+
+I'm excited about completing the final and getting it into a production environment where 
+the school can use it. 
+
+Best of luck to everyone and I look forward to reviewing your projects. 
+
+Todd Hamm
