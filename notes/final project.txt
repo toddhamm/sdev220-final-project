@@ -20,3 +20,17 @@ Project management requirements are:
 Commit code regularly to a GitHub repository.
 Make the repository accessible to the instructor.
 The completed project is to be submitted by the due date given in Module 8.
+
+class / objects
+Grade
+Student
+Reporting
+GUI (Custom TKinter)
+
+Your system must utilize collections such as lists, tuples, arrays, and dictionaries.
+
+To do: 
+- correctly separate logic / modules so that they are easy to read, understand and standards compliant or 
+follow industry best practices
+- learn how to use class / objects better
+- 

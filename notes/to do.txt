@@ -1,0 +1,27 @@
+
+# Create the Entry widget
+        self.entry = ctk.CTkEntry(self, placeholder_text="Grade Level: ")
+        self.entry.pack(pady=20)
+
+        # Create a Submit Button
+        self.btn = ctk.CTkButton(self, text="Submit", command=self.get_grade_level)
+        self.btn.pack(pady=10)
+
+        # Label to show the result
+        self.output_label = ctk.CTkLabel(self, text="")
+        self.output_label.pack(pady=10)
+
+'''
+The construct if __name__ == '__main__': ensures that specific code runs only when the Python file 
+is executed directly as a script, and not when it is imported as a module into another file
+
+Before Python runs your code, it automatically assigns values to a few special variables. One of these is __name__.
+
+Running directly: If you run a file from your terminal (e.g., python myscript.py), Python assigns the string '__main__' to the __name__ variable.
+Importing: If you import that file into another script (e.g., import myscript), Python sets __name__ to the actual filename (e.g., 'myscript').
+
+The if statement simply checks this value. If it equals '__main__', the code inside the block executes.
+
+When Python imports a file, it executes all the top-level code inside that file instantly. Without this guard block, any active code (like print statements, calculations, or window pop-ups) will trigger automatically during the import, which is usually unwanted behavior.
+
+'''
