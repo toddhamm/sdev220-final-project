@@ -4,6 +4,7 @@ import customtkinter as ctk
 import os
 from tkinter import filedialog, ttk
 
+# GUI class
 class AttendanceTrendsApp(ctk.CTk):
     def __init__(self):
         
@@ -18,29 +19,49 @@ class AttendanceTrendsApp(ctk.CTk):
 
         # container for buttons
         self.button_frame = ctk.CTkFrame(self, fg_color="transparent")
-        self.button_frame.pack(pady=40, padx=20)
+        self.button_frame.pack(pady=10, padx=5)
 
-        # open csv file button
-        self.open_btn = ctk.CTkButton(self.button_frame, text="New Report", command=self.open_csv)
-        #self.btn.grid(row=0, column=0, padx=20, pady=20)
-        self.open_btn.pack(side="left", padx=10)
+        # new report button
+        self.open_btn = ctk.CTkButton(self.button_frame, text="New Report", command=self.new_report)
+        self.open_btn.pack(side="left", padx=5)
+
+        # clear the tree; this button is hidden until tree is loaded with csv data
+        self.clear_btn = ctk.CTkButton(self.button_frame, text="Clear", command=self.clear_data)
 
         # list saved reports button
         self.list_btn = ctk.CTkButton(self.button_frame, text="Saved Reports", command=self.list_saved_reports)
-        self.list_btn.pack(side="left", padx=10)
+        self.list_btn.pack(side="left", padx=5)
 
         # close the app button
         self.exit_btn = ctk.CTkButton(self.button_frame, text="Exit", command=self.destroy)
-        self.exit_btn.pack(side="left", padx=10)
+        self.exit_btn.pack(side="left", padx=5)
 
-        # create a window / frame / "tree" view below the buttons
-        self.tree = ttk.Treeview(self, show="headings")
-        self.tree.pack(fill="both", expand=True, padx=10, pady=10)
+    # new report button
+    def new_report(self):
+        # step 1: show the grade level text entry
+        self.grade_level_text_box = ctk.CTkEntry(self, placeholder_text="Enter Grade Level: ")
+        self.grade_level_text_box.pack(pady=5)
 
-    # open the csv
-    def open_csv(self):
+        # show the create report button
+        self.open_csv_btn = ctk.CTkButton(self, text="Open CSV File", command=self.create_report)
+        self.open_csv_btn.pack(pady=5)
+
+        # text label to display user entry 
+        self.output_label = ctk.CTkLabel(self, text="")
+        self.output_label.pack(pady=5)
+
+    # create the report
+    def create_report(self):
+
+        # error if no grade level entered
+
         # set initial directory as Desktop
-        file_path = os.path.join(os.path.expanduser("~"), "Desktop")
+        # file_path = os.path.join(os.path.expanduser("~"), "Desktop")
+
+        # temp direct file path
+        file_path = '/Desktop'
+
+        # to do: handle errors if user does not make a selection
 
         # show only csv file types
         file_types = [
@@ -58,6 +79,10 @@ class AttendanceTrendsApp(ctk.CTk):
         if not file_path: 
             return
         
+        # create a window / frame / "tree" view below the buttons
+        self.tree = ttk.Treeview(self, show="headings")
+        self.tree.pack(fill="both", expand=True, padx=10, pady=10)
+
         # remove anything in the window / frame below
         self.tree.delete(*self.tree.get_children())
 
@@ -69,26 +94,42 @@ class AttendanceTrendsApp(ctk.CTk):
             for h in headers: self.tree.heading(h, text=h)
             for row in reader: self.tree.insert("", "end", values=row)
 
-    # get user input for grade level method
-    def get_grade_level(self):
-        user_text = self.entry.get() 
-        print(f"User typed: {user_text}")
+        user_text = self.grade_level_text_box.get() 
+        # print(f"User typed: {user_text}")
         
         # 2. Update the label to display it
-        self.output_label.configure(text=f"Submitted: {user_text}")
+        self.output_label.configure(text=f"Importing data for grade level: {user_text}")
+
+        # show the clear button
+        self.clear_btn.pack(side="left", padx=5)
+
+        # hide the open csv file button
+        self.open_csv_btn.destroy()
+
+        # hide the text entry box
+        self.grade_level_text_box.destroy()
 
     # save imported csv
 
     # clear imported data
+    def clear_data(self):
+        # remove anything in the window / frame / tree below the buttons
+        self.tree["columns"] = ()
+        self.tree.delete(*self.tree.get_children())
+        self.tree.destroy()
+        self.output_label.destroy()
+        self.open_csv_btn.destroy();
+        self.grade_level_text_box.destroy()
+
+        # hide clear button
+        self.clear_btn.pack_forget()
+
+        # to do: remove the tree, remove the grade level text box, remove the create report button
 
     # process the csv
 
     # list stored reports
     def list_saved_reports(self):
-        pass
-
-    # quit the program
-    def quit_app(self):
         pass
 
 # 
